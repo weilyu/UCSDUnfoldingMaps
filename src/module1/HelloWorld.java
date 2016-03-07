@@ -1,5 +1,6 @@
 package module1;
 
+import de.fhpotsdam.unfolding.providers.Microsoft;
 import processing.core.PApplet;
 import de.fhpotsdam.unfolding.UnfoldingMap;
 import de.fhpotsdam.unfolding.geo.Location;
@@ -43,7 +44,7 @@ public class HelloWorld extends PApplet
 
 		// This sets the background color for the Applet.  
 		// Play around with these numbers and see what happens!
-		this.background(200, 200, 200);
+		this.background(60, 63, 65);
 		
 		// Select a map provider
 		AbstractMapProvider provider = new Google.GoogleTerrainProvider();
@@ -73,9 +74,14 @@ public class HelloWorld extends PApplet
 		
 		// This line makes the map interactive
 		MapUtils.createDefaultEventDispatcher(this, map1);
-		
-		// TODO: Add code here that creates map2 
+
 		// Then you'll modify draw() below
+        //create map2 with microsoft hybrid provider and set the location to Tokyo
+        AbstractMapProvider provider2 = new Microsoft.HybridProvider();
+        int zoomLevel2 = 10;
+        map2 = new UnfoldingMap(this, 425, 50, 350, 500, provider2);
+        map2.zoomAndPanTo(zoomLevel2, new Location(35.6735408,139.5703013));
+        MapUtils.createDefaultEventDispatcher(this, map2);
 
 	}
 
@@ -84,6 +90,7 @@ public class HelloWorld extends PApplet
 		// So far we only draw map1...
 		// TODO: Add code so that both maps are displayed
 		map1.draw();
+        map2.draw();
 	}
 
 	
