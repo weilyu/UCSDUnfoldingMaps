@@ -184,16 +184,6 @@ public class EarthquakeCityMap extends PApplet {
         text("Intermediate", xbase+50, ybase+160);
         text("Deep", xbase+50, ybase+180);
 
-        text("Past hour", xbase+50, ybase+200);
-
-        fill(255, 255, 255);
-        int centerx = xbase+35;
-        int centery = ybase+200;
-        ellipse(centerx, centery, 12, 12);
-
-        strokeWeight(2);
-        line(centerx-8, centery-8, centerx+8, centery+8);
-        line(centerx-8, centery+8, centerx+8, centery-8);
     }
 
 
