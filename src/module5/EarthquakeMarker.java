@@ -110,8 +110,7 @@ public abstract class EarthquakeMarker extends CommonMarker
 	 */
 	public double threatCircle() {	
 		double miles = 20.0f * Math.pow(1.8, 2*getMagnitude()-5);
-		double km = (miles * kmPerMile);
-		return km;
+        return (miles * kmPerMile);
 	}
 	
 	// determine color of marker from depth
