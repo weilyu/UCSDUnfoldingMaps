@@ -153,11 +153,12 @@ public class EarthquakeCityMap extends PApplet {
         }
         al.sort(EarthquakeMarker::compareTo);
         if (numToPrint > al.size()) {
-            for (int i = al.size() - 1; i >= 0; i--) {
+            for (int i = 0; i < al.size(); i++) {
                 println(al.get(i));
+
             }
         } else {
-            for (int i = al.size() - 1; i >= al.size() - numToPrint; i--) {
+            for (int i = 0; i < numToPrint; i++) {
                 println(al.get(i));
             }
         }
