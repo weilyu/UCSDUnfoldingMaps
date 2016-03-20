@@ -26,8 +26,9 @@ public class AirportMap extends PApplet {
 	UnfoldingMap map;
 	private List<Marker> airportList;
 	List<Marker> routeList;
-	
-	public void setup() {
+    private Marker lastSelected;
+
+    public void setup() {
 		// setting up PAppler
 		size(800,600, OPENGL);
 		
@@ -72,7 +73,7 @@ public class AirportMap extends PApplet {
 			
 			SimpleLinesMarker sl = new SimpleLinesMarker(route.getLocations(), route.getProperties());
 		
-			System.out.println(sl.getProperties());
+			//System.out.println(sl.getProperties());
 			
 			//UNCOMMENT IF YOU WANT TO SEE ALL ROUTES
 			//routeList.add(sl);
@@ -92,6 +93,34 @@ public class AirportMap extends PApplet {
 		map.draw();
 		
 	}
-	
+
+    @Override
+    public void mouseMoved() {
+        // clear the last selection
+        if (lastSelected != null) {
+            lastSelected.setSelected(false);
+            lastSelected = null;
+
+        }
+        selectMarkerIfHover(airportList);
+        //loop();
+    }
+
+    // If there is a marker selected
+    private void selectMarkerIfHover(List<Marker> markers) {
+        // Abort if there's already a marker selected
+        if (lastSelected != null) {
+            return;
+        }
+
+        for (Marker m : markers) {
+            CommonMarker marker = (CommonMarker) m;
+            if (marker.isInside(map, mouseX, mouseY)) {
+                lastSelected = marker;
+                marker.setSelected(true);
+                return;
+            }
+        }
+    }
 
 }
