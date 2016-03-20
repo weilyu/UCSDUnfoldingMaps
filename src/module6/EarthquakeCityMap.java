@@ -146,6 +146,22 @@ public class EarthquakeCityMap extends PApplet {
     // TODO: Add the method:
     //   private void sortAndPrint(int numToPrint)
     // and then call that method from setUp
+    public void sortAndPrint(int numToPrint) {
+        ArrayList<EarthquakeMarker> al = new ArrayList<>();
+        for (Marker m : quakeMarkers) {
+            al.add((EarthquakeMarker) m);
+        }
+        al.sort(EarthquakeMarker::compareTo);
+        if (numToPrint > al.size()) {
+            for (int i = al.size() - 1; i >= 0; i--) {
+                println(al.get(i));
+            }
+        } else {
+            for (int i = al.size() - 1; i >= al.size() - numToPrint; i--) {
+                println(al.get(i));
+            }
+        }
+    }
 
     /**
      * Event handler that gets called automatically when the
@@ -408,21 +424,6 @@ public class EarthquakeCityMap extends PApplet {
         return false;
     }
 
-    public void sortAndPrint(int numToPrint) {
-        ArrayList<EarthquakeMarker> al = new ArrayList<>();
-        for (Marker m : quakeMarkers) {
-            al.add((EarthquakeMarker) m);
-        }
-        al.sort(EarthquakeMarker::compareTo);
-        if (numToPrint > al.size()) {
-            for (int i = al.size() - 1; i >= 0; i--) {
-                println(al.get(i));
-            }
-        } else {
-            for (int i = al.size() - 1; i >= al.size() - numToPrint; i--) {
-                println(al.get(i));
-            }
-        }
-    }
+
 
 }
